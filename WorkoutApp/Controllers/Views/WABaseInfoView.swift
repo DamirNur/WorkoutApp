@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WABaseInfoView: BaseView {
+class WABaseInfoView: WABaseView {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -16,13 +16,9 @@ class WABaseInfoView: BaseView {
         return label
     }()
     
-    private let button: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .red
-        return button
-    }()
+    private let button = WAButton(with: .primary)
     
-    private let contentView: UIView = {
+    let contentView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         view.layer.borderColor = R.Colors.separator.cgColor
@@ -35,8 +31,9 @@ class WABaseInfoView: BaseView {
         titleLabel.text = title?.uppercased()
         titleLabel.textAlignment = buttonTitle == nil ? .center : .left
         
-        button.setTitle(buttonTitle, for: .normal)
+        button.setTitle(buttonTitle?.uppercased())
         button.isHidden = buttonTitle == nil ? true : false
+        
         super.init(frame: .zero)
     }
     
@@ -58,6 +55,7 @@ extension WABaseInfoView {
         setupView(button)
         setupView(contentView)
     }
+    
     override func constraintViews() {
         super.constraintViews()
         
@@ -71,8 +69,7 @@ extension WABaseInfoView {
             
             button.trailingAnchor.constraint(equalTo: trailingAnchor),
             button.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
-            button.widthAnchor.constraint(equalToConstant: 130),
-            button.heightAnchor.constraint(equalToConstant: 30),
+            button.heightAnchor.constraint(equalToConstant: 28),
             
             contentView.topAnchor.constraint(equalTo: contentTopAnchor, constant: contentTopOffset),
             contentView.leadingAnchor.constraint(equalTo: leadingAnchor),

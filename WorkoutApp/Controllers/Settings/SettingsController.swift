@@ -5,4 +5,13 @@
 //  Created by Damir Nuriev on 14.01.2023.
 //
 
-import Foundation
+import UIKit
+
+class SettingsController: WABaseController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        title = R.Strings.NavBar.settings
+    }
+}
